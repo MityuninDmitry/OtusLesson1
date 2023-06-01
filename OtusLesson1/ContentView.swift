@@ -8,14 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var tabSelection: Int = 0
+    @State var autoSelectedQuoteIndex: Int? = nil
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        TabView(selection: $tabSelection) {
+            FirstScreen(
+                tabSelection: $tabSelection,
+                autoSelectedItem: $autoSelectedQuoteIndex)
+                .tabItem {
+                    Label("FirstScreen", systemImage: "sun.min")
+                }
+                .tag(0)
+            
+            SecondScreen(autoSelectedItem: $autoSelectedQuoteIndex)
+                .tabItem {
+                    Label("SecondScreen", systemImage: "cloud.sun.bolt")
+                }
+                .tag(1)
+            
+            ThirdScreen()
+                .tabItem {
+                    Label("ThirdScreen", systemImage: "gear")
+                }
+                .tag(2)
         }
-        .padding()
     }
 }
 
