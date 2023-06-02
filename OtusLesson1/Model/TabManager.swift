@@ -24,10 +24,6 @@ class TabManager: ObservableObject {
         tabs = idx
     }
     
-    func updateTabsFromDict() {
-        
-    }
-    
     func showRandomQuote() {
         self.selectedNavigationLinkIndex = Int.random(in: 0..<tabs.count)
         self.seletedTabId = 1
