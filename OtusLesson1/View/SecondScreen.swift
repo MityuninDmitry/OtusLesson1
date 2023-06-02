@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SecondScreen: View {
     var quotes = Dict.quotes
-    @Binding var autoSelectedItem: Int?
+    
+    @EnvironmentObject var tabManager: TabManager
     
     var body: some View {
         NavigationView {
@@ -18,7 +19,7 @@ struct SecondScreen: View {
                     "See \(quote.id + 1) quote",
                     destination:MotivationView(quote: quote),
                     tag: quote.id,
-                    selection: $autoSelectedItem
+                    selection: $tabManager.selectedNavigationLinkIndex
                 )
             }
             .listStyle(.plain)
@@ -31,6 +32,6 @@ struct SecondScreen: View {
 
 struct SecondScreen_Previews: PreviewProvider {
     static var previews: some View {
-        SecondScreen(autoSelectedItem: .constant(nil))
+        SecondScreen()
     }
 }

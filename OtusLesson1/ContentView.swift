@@ -9,18 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     @State var tabSelection: Int = 0
-    @State var autoSelectedQuoteIndex: Int? = nil
+    
+    @EnvironmentObject var tabManager: TabManager
+    
     var body: some View {
-        TabView(selection: $tabSelection) {
-            FirstScreen(
-                tabSelection: $tabSelection,
-                autoSelectedItem: $autoSelectedQuoteIndex)
+        
+        TabView(selection: $tabManager.seletedTabId) {
+            FirstScreen()
                 .tabItem {
                     Label("FirstScreen", systemImage: "sun.min")
                 }
-                .tag(0)
+                .tag(0)          
             
-            SecondScreen(autoSelectedItem: $autoSelectedQuoteIndex)
+            SecondScreen()
                 .tabItem {
                     Label("SecondScreen", systemImage: "cloud.sun.bolt")
                 }
@@ -32,11 +33,13 @@ struct ContentView: View {
                 }
                 .tag(2)
         }
+ 
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(TabManager.shared)
     }
 }

@@ -12,6 +12,8 @@ struct OtusLesson1App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(TabManager.shared)
+                
         }
     }
 }
