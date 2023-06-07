@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var tabSelection: Int = 0
-    
     @EnvironmentObject var tabManager: TabManager
     
     var body: some View {
